@@ -20,6 +20,7 @@ public class OrderController {
 	@Autowired
 	IOrderService service;
 	
+	// get all
 	@GetMapping("/orders")
 	public ArrayList<Order> getAll() {
 		return (ArrayList<Order>) service.getAll();
@@ -44,7 +45,7 @@ public class OrderController {
 			client.setPhone(order.getClient().getPhone());
 			client.setEmail(order.getClient().getEmail());
 			order.setClient(client);
-		}		
+		}			
 		Double total = 0.0;
 		for(int i = 0; i < order.getItems().size(); i++) {
 			total += order.getItems().get(i).getTotal();

@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.elizatest.rocket.model.Client;
 import br.com.elizatest.rocket.service.IClientService;
 
-@RestController
+@RestController // @RestController is a convenience annotation that does nothing more than adding the @Controller and @ResponseBody annotations
 public class ClientController {
-	@Autowired
+	@Autowired 
 	private IClientService service;
 	
+	// get all
 	@GetMapping("/clients")
 	public ResponseEntity<ArrayList<Client>> getAll(@RequestParam (value="isDeleted", required = false, defaultValue = "false") boolean isDeleted){
 		ArrayList<Client> users = service.getAll(isDeleted);

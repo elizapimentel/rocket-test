@@ -1,4 +1,4 @@
-package br.com.elizatest.rocket.model;
+package br.com.elizatest.rocket.client.Infrastructure;
 
 import java.time.LocalDate;
 
@@ -9,19 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
+import br.com.elizatest.rocket.client.core.Client;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity // This tells Hibernate to make a table out of this class
-@Table(name = "clients") // This tells Hibernate to name the table as "clients"
-@SQLDelete(sql = "UPDATE clients SET deleted = true WHERE id=?") // This tells Hibernate to update the deleted column as true
-@FilterDef(name = "deletedClientFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean")) // This tells Hibernate to create a filter to filter the deleted column
-@Filter(name = "deletedClientFilter", condition = "deleted = :isDeleted") // This tells Hibernate to filter the deleted column
-public class Client {
+/* @SQLDelete(sql = "UPDATE clients SET deleted = true WHERE id=?") 
+@FilterDef(name = "deletedClientFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
+@Filter(name = "deletedClientFilter", condition = "deleted = :isDeleted")  */
+@Entity 
+@Table(name = "clients") 
+public class ClientModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -37,8 +33,27 @@ public class Client {
 	private String address;
 	@Column(name = "birth", nullable = false)
 	private LocalDate birth;
-	@Column(name = "deleted")
-	private Boolean deleted = Boolean.FALSE;
+	/* @Column(name = "deleted")
+	private Boolean deleted = Boolean.FALSE; */
+
+	public ClientModel(Integer id, String name, String cpf, String email, String phone, String address,
+			LocalDate birth) {
+		this.id = id;
+		this.name = name;
+		this.cpf = cpf;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.birth = birth;
+	}
+
+	public Client toClient() {
+		return new Client(id, name, cpf, email, phone, address, birth);
+	}
+
+	public ClientModel() {
+
+	}
 
 	public Integer getId() {
 		return id;
@@ -96,12 +111,12 @@ public class Client {
 		this.address = address;
 	}
 
-	public Boolean isDeleted() {
+	/* public Boolean isDeleted() {
 		return deleted;
 	}
 
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
-	}
+	} */
 
 }

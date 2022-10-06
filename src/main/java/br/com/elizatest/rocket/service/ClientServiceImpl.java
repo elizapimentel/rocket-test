@@ -14,15 +14,16 @@ import org.springframework.stereotype.Service;
 import br.com.elizatest.rocket.dao.ClientDAO;
 import br.com.elizatest.rocket.model.Client;
 
-@Service
+@Service // @Service is a specialization of @Component for classes that provide some business functionality.
+// polimosphism from IClientService
 public class ClientServiceImpl implements IClientService {
 
-	@Autowired
+	@Autowired // @Autowired is used to inject the object dependency implicitly. Without using "new" keyword.
 	ClientDAO dao;
 
-	private EntityManager em;
+	private EntityManager em; // @PersistenceContext is used to inject EntityManager instance.
 
-	@PersistenceContext
+	@PersistenceContext // @PersistenceContext is used to inject EntityManager instance.
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}
