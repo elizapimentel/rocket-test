@@ -26,13 +26,14 @@ public class ClientJPARepository implements ClientRepository {
         clientModel.setEmail(client.getEmail());
         clientModel.setName(client.getName());
         clientModel.setPhone(client.getPhone());
+        clientModel.setDeleted(client.getDeleted());
         dao.save(clientModel);
        
     }
 
     @Override
     public Client updateClient(Client updateClient) {
-        ClientModel client = new ClientModel(updateClient.getId(), updateClient.getName(), updateClient.getCpf(), updateClient.getEmail(),updateClient.getPhone(), updateClient.getAddress(), updateClient.getBirth());     
+        ClientModel client = new ClientModel(updateClient.getId(), updateClient.getName(), updateClient.getCpf(), updateClient.getEmail(), updateClient.getPhone(), updateClient.getAddress(), updateClient.getBirth(), updateClient.getDeleted());;     
         dao.save(client);
         return updateClient;        
     }
@@ -44,8 +45,24 @@ public class ClientJPARepository implements ClientRepository {
             return Optional.of(client.toClient());
         }
         return Optional.empty();
-        
+    
     }
+
+    @Override
+    public void deleteClient(Client deleteClient) {
+        ClientModel client = new ClientModel(deleteClient.getId(), deleteClient.getName(), deleteClient.getCpf(), deleteClient.getEmail(),deleteClient.getPhone(), deleteClient.getAddress(), deleteClient.getBirth(), deleteClient.getDeleted());
+        client.setDeleted(true);
+        dao.save(client);
+    }
+
+    @Override
+    public Boolean emailExists(String email) {
+        return dao.findByEmail(email) != null;
+       
+    }
+
+  
+   
 
    
    

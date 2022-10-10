@@ -7,5 +7,7 @@ public interface ClientRepository {
     void save(Client client);
     Optional<Client> load(Integer id);
     Client updateClient(Client updateClient);
+    void deleteClient(Client deleteClient);
+    Boolean emailExists(String email);
    
 }

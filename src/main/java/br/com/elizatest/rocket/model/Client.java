@@ -14,8 +14,6 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "clients") // This tells Hibernate to name the table as "clients"
 @SQLDelete(sql = "UPDATE clients SET deleted = true WHERE id=?") // This tells Hibernate to update the deleted column as true

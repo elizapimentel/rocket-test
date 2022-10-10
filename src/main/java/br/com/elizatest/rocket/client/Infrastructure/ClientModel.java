@@ -33,11 +33,11 @@ public class ClientModel {
 	private String address;
 	@Column(name = "birth", nullable = false)
 	private LocalDate birth;
-	/* @Column(name = "deleted")
-	private Boolean deleted = Boolean.FALSE; */
+	@Column(name = "deleted")
+	private Boolean deleted = Boolean.FALSE;
 
 	public ClientModel(Integer id, String name, String cpf, String email, String phone, String address,
-			LocalDate birth) {
+			LocalDate birth, Boolean deleted) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -45,12 +45,16 @@ public class ClientModel {
 		this.phone = phone;
 		this.address = address;
 		this.birth = birth;
+		this.deleted = deleted;
+
 	}
 
+	// ?
 	public Client toClient() {
 		return new Client(id, name, cpf, email, phone, address, birth);
 	}
 
+	// ?
 	public ClientModel() {
 
 	}
@@ -111,12 +115,12 @@ public class ClientModel {
 		this.address = address;
 	}
 
-	/* public Boolean isDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
-
-	public void setDeleted(Boolean deleted) {
+	
+    public void setDeleted(Boolean deleted) {		
 		this.deleted = deleted;
-	} */
-
+	}
+		
 }
