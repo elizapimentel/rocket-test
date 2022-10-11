@@ -1,6 +1,5 @@
 package br.com.elizatest.rocket.client.application.commands;
 
-import br.com.elizatest.rocket.client.application.DeleteClientCommand;
 import br.com.elizatest.rocket.client.core.Client;
 import br.com.elizatest.rocket.client.core.ClientRepository;
 import br.com.elizatest.rocket.shared.command.ApplicationCommandExecutor;

@@ -46,6 +46,12 @@ public class Client {
     public void delete() {
         this.deleted = false;
     }
+
+    /* public Client get(String name, String cpf, String email, String phone, String address, LocalDate birth, Boolean deleted) {
+        if (!this.deleted) throw new IllegalArgumentException("Cliente não encontrado");
+        return new Client(id, name, cpf, email, phone, address, birth);
+        
+    } */
     
     public void editName(String name) {
         if (name.isEmpty()) throw new IllegalArgumentException ("O nome não pode ser vazio");

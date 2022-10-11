@@ -3,9 +3,9 @@ package br.com.elizatest.rocket.client.Infrastructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.elizatest.rocket.client.application.DeleteClientCommand;
 import br.com.elizatest.rocket.client.application.commands.CreateClientCommand;
 import br.com.elizatest.rocket.client.application.commands.CreateClientCommandExecutor;
+import br.com.elizatest.rocket.client.application.commands.DeleteClientCommand;
 import br.com.elizatest.rocket.client.application.commands.DeleteClientCommandExecutor;
 import br.com.elizatest.rocket.client.application.commands.UpdateClientCommand;
 import br.com.elizatest.rocket.client.application.commands.UpdateClientCommandExecutor;

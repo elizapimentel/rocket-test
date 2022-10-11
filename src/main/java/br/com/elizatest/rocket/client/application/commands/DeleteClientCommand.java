@@ -1,4 +1,4 @@
-package br.com.elizatest.rocket.client.application;
+package br.com.elizatest.rocket.client.application.commands;
 
 import br.com.elizatest.rocket.shared.command.ApplicationCommand;
 

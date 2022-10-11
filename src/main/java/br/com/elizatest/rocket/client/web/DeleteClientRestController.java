@@ -3,11 +3,9 @@ package br.com.elizatest.rocket.client.web;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.elizatest.rocket.client.application.DeleteClientCommand;
+import br.com.elizatest.rocket.client.application.commands.DeleteClientCommand;
 import br.com.elizatest.rocket.shared.command.ApplicationCommandDispatcher;
 
 class DeleteClientRequest {    
