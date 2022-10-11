@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.elizatest.rocket.client.application.queries.GetClientById;
-import br.com.elizatest.rocket.client.application.queries.GetClientById.ClientResult;
 import br.com.elizatest.rocket.shared.query.ApplicationQueryDispatcher;
 
 @RequestMapping

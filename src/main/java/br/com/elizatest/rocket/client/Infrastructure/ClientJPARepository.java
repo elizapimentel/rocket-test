@@ -61,16 +61,10 @@ public class ClientJPARepository implements ClientRepository {
        
     }
 
-    @Override
-    public Optional<Client> findAll(Boolean isDeleted) {
-        return null;
-       
-    }
-
-  
-   
-
-   
-   
+    /* @Override
+    public Optional<Client> findAll(Boolean isDeleted) {        
+        return Optional.empty();
+    } */
+ 
     
 }
