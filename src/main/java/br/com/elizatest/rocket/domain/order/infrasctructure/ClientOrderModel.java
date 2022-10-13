@@ -9,9 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.elizatest.rocket.domain.client.core.Client;
+import br.com.elizatest.rocket.domain.order.core.ClientOrder;
 
-@Entity 
+@Entity
 @Table(name = "clients") 
 public class ClientOrderModel {
 	@Id
@@ -32,8 +32,7 @@ public class ClientOrderModel {
 	@Column(name = "deleted")
 	private Boolean deleted = Boolean.FALSE;
 
-	public ClientOrderModel(Integer id, String name, String cpf, String email, String phone, String address,
-			LocalDate birth, Boolean deleted) {
+	public ClientOrderModel(Integer id, String name, String cpf, String email, String phone, String address, LocalDate birth, Boolean deleted) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -46,8 +45,8 @@ public class ClientOrderModel {
 	}
 
 	// ?
-	public Client toClient() {
-		return new Client(id, name, cpf, email, phone, address, birth);
+	public ClientOrder toClient() {
+		return new ClientOrder(id, name, cpf, email, phone, address, birth);
 	}
 
 	// ?

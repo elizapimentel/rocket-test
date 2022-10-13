@@ -14,11 +14,11 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 
-@Entity // This tells Hibernate to make a table out of this class
-@Table(name = "clients") // This tells Hibernate to name the table as "clients"
-@SQLDelete(sql = "UPDATE clients SET deleted = true WHERE id=?") // This tells Hibernate to update the deleted column as true
+/* @SQLDelete(sql = "UPDATE clients SET deleted = true WHERE id=?") // This tells Hibernate to update the deleted column as true
 @FilterDef(name = "deletedClientFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean")) // This tells Hibernate to create a filter to filter the deleted column
-@Filter(name = "deletedClientFilter", condition = "deleted = :isDeleted") // This tells Hibernate to filter the deleted column
+@Filter(name = "deletedClientFilter", condition = "deleted = :isDeleted") // This tells Hibernate to filter the deleted column */
+@Entity 
+@Table(name = "clients") 
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

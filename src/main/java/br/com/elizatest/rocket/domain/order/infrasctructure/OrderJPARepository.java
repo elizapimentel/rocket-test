@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.elizatest.rocket.domain.order.core.ClientOrder;
 import br.com.elizatest.rocket.domain.order.core.Order;
 import br.com.elizatest.rocket.domain.order.core.OrderRepository;
 
@@ -35,13 +36,17 @@ public class OrderJPARepository implements OrderRepository {
         dao.save(orderModel);
     }
 
+    private ClientOrderModel convertToModel(ClientOrder client) {
+        return new ClientOrderModel(client.getId(), client.getName(), client.getCpf(), client.getEmail(), client.getPhone(), client.getAddress(), client.getBirth(), client.getDeleted());
+    }
+
     private OrderModel convertToModel(Order order) {
         OrderModel orderModel = new OrderModel();
         orderModel.setId(order.getId());
         orderModel.setDeliveryAddress(order.getDeliveryAddress());
         orderModel.setTotalOrder(order.getTotalOrder());
         //onde colocar condição de caso cliente seja nulo?
-        orderModel.setClient(order.getClient());
+        orderModel.setClient(convertToModel(order.getClient()));
         var convertItems = order.getItems().stream().map(item -> new OrderItemModel(item.getSku(), item.getName(), item.getValue(), item.getQuantity(), item.getTotal(), orderModel)).collect(Collectors.toList());
         orderModel.setItems(convertItems);
         return orderModel;
@@ -54,7 +59,7 @@ public class OrderJPARepository implements OrderRepository {
         order.setId(deleteOrder.getId());
         order.setDeliveryAddress(deleteOrder.getDeliveryAddress());
         order.setTotalOrder(deleteOrder.getTotalOrder());
-        order.setClient(deleteOrder.getClient());   
+        order.setClient(convertToModel(deleteOrder.getClient()));   
         var convertItem = deleteOrder.getItems().stream().map(item -> new OrderItemModel(item.getSku(), item.getName(), item.getValue(), item.getQuantity(), item.getTotal(), order)).collect(Collectors.toList());
         order.setItems(convertItem);
         dao.save(order);

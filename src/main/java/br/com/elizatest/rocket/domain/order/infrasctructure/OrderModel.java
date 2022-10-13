@@ -31,24 +31,28 @@ public class OrderModel {
 	private Double totalOrder;
 	
 	@ManyToOne
-	@JoinColumn(name="client_id")
-	private ClientOrder client;
+	@JoinColumn(name="client_id", referencedColumnName = "id")
+	private ClientOrderModel client;
 		
-	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("orders")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("order")
 	private List<OrderItemModel> items;
 
-	public OrderModel(Integer id, String deliveryAddress, Double totalOrder, ClientOrder client, List<OrderItemModel> items) {
+	public OrderModel(Integer id, String deliveryAddress, Double totalOrder, ClientOrderModel client, List<OrderItemModel> items) {
 		this.id = id;
 		this.deliveryAddress = deliveryAddress;
 		this.totalOrder = totalOrder;
 		this.client = client;
 		this.items = items;
 	}
+
+	public ClientOrder toClientOrder() {
+		return this.client.toClient();
+	}
 	
 	public Order toOrder() {	
 		var itensConvertidos = items.stream().map(item -> item.toOrderItem()).collect(Collectors.toList());	
-		return new Order(id, deliveryAddress, totalOrder, client, itensConvertidos);
+		return new Order(id, deliveryAddress, totalOrder, toClientOrder(), itensConvertidos);
 	}
 	
 	public OrderModel() {
@@ -79,11 +83,11 @@ public class OrderModel {
 		this.totalOrder = totalOrder;
 	}
 
-	public ClientOrder getClient() {
+	public ClientOrderModel getClient() {
 		return client;
 	}
 
-	public void setClient(ClientOrder client) {
+	public void setClient(ClientOrderModel client) {
 		this.client = client;
 	}
 

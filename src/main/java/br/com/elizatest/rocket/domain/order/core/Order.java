@@ -12,9 +12,9 @@ public class Order {
     public Order(Integer id, String deliveryAddress, Double totalOrder, ClientOrder client, List<OrderItem> items) {
         this.id = id;
         this.deliveryAddress = deliveryAddress;
-        this.calculateTotalPrice();
         this.client = client;
         this.items = items;
+        this.calculateTotalPrice();
     }
 
     //correto?
