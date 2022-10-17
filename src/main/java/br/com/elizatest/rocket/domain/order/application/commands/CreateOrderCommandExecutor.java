@@ -19,7 +19,7 @@ public class CreateOrderCommandExecutor implements ApplicationCommandExecutor<Vo
 
     @Override
     public Void execute(CreateOrderCommand command) {
-        var client = new ClientOrder(command.client_id.id, command.client_id.name, command.client_id.cpf, command.client_id.email, command.client_id.phone, command.client_id.address, command.client_id.birth);
+        var client = new ClientOrder(command.client.id, command.client.name, command.client.cpf, command.client.email, command.client.phone, command.client.address, command.client.birth);
         var items = command.items
         .stream()
         .map(item -> new OrderItem(item.sku, item.name, item.value, item.quantity))
@@ -28,9 +28,6 @@ public class CreateOrderCommandExecutor implements ApplicationCommandExecutor<Vo
         Order order = new Order(null, command.deliveryAddress, command.totalOrder, client, items);
         repository.save(order);
         return null;
-    }
-
-
-    
+    }   
     
 }

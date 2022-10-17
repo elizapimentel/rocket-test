@@ -80,17 +80,24 @@ public class CreateOrderRestController {
 
     @PostMapping("/v2/orders")
     public ResponseEntity<?> createOrderRequestHandler(@RequestBody CreateOrderRquest createOrderRequest) {
-        var client = new CreateOrderCommand.ClientOrder(createOrderRequest.client.id, createOrderRequest.client.name, createOrderRequest.client.cpf, createOrderRequest.client.email, createOrderRequest.client.phone, createOrderRequest.client.address, createOrderRequest.client.birth);
-        var items = createOrderRequest.items
-        .stream()
-        .map(item -> new CreateOrderCommand.OrderItems(item.sku, item.name, item.value, item.quantity, item.total))
-        .collect(Collectors.toList());
-        CreateOrderCommand command = new CreateOrderCommand(createOrderRequest.deliveryAddress, createOrderRequest.totalOrder, client, items);
-        commands.execute(command);
-        return ResponseEntity.ok(null);
+        try {
+            var client = new CreateOrderCommand.ClientOrder(createOrderRequest.client.id, createOrderRequest.client.name, createOrderRequest.client.cpf, createOrderRequest.client.email, createOrderRequest.client.phone, createOrderRequest.client.address, createOrderRequest.client.birth);
+            var items = createOrderRequest.items
+            .stream()
+            .map(item -> new CreateOrderCommand.OrderItems(item.sku, item.name, item.value, item.quantity, item.total))
+            .collect(Collectors.toList());
+            CreateOrderCommand command = new CreateOrderCommand(createOrderRequest.deliveryAddress, createOrderRequest.totalOrder, client, items);
+            commands.execute(command);
+            return ResponseEntity.ok(null);            
+        } catch (IllegalStateException | IllegalArgumentException i) {
+            i.printStackTrace();
+            return ResponseEntity.unprocessableEntity().body(i.getMessage());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        } 
          
     }
-
-
     
 }

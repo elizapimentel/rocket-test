@@ -12,23 +12,10 @@ public class Order {
     public Order(Integer id, String deliveryAddress, Double totalOrder, ClientOrder client, List<OrderItem> items) {
         this.id = id;
         this.deliveryAddress = deliveryAddress;
+        this.totalOrder = totalOrder;
         this.client = client;
         this.items = items;
-        this.calculateTotalPrice();
     }
-
-    //correto?
-    private void calculateTotalPrice() {
-        items.stream().map(OrderItem::getTotal).reduce(0D, (t, u) -> Double.sum(t, u));
-    }
-
-    
-        //fazer no command do order
-      /*   public void editClient(Client client) {
-        if (client == null) throw new IllegalArgumentException("Client is invalid");
-        this.client = client;
-    } */
-
 
     public Integer getId() {
         return id;
@@ -47,6 +34,7 @@ public class Order {
     }
 
     public Double getTotalOrder() {
+        totalOrder = items.stream().map(OrderItem::getTotal).reduce(0D, (t, u) -> Double.sum(t, u));
         if (totalOrder == 0.0) throw new IllegalArgumentException("Total order is invalid");
         return totalOrder;
     }

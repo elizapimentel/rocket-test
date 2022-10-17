@@ -9,13 +9,13 @@ public class CreateOrderCommand implements ApplicationCommand<Void>{
     
     public final String deliveryAddress;
     public final Double totalOrder;
-    public final ClientOrder client_id;
+    public final ClientOrder client;
     public final List<OrderItems> items;
 
-    public CreateOrderCommand(String deliveryAddress, Double totalOrder,  ClientOrder client_id,List<OrderItems> items) {
+    public CreateOrderCommand(String deliveryAddress, Double totalOrder,  ClientOrder client,List<OrderItems> items) {
         this.deliveryAddress = deliveryAddress;
         this.totalOrder = totalOrder;
-        this.client_id = client_id;
+        this.client = client;
         this.items = items;
     }
 
