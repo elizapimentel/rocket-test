@@ -17,6 +17,10 @@ public class Order {
         this.items = items;
     }
 
+    public void delete() {
+        this.client.delete();
+    }
+
     public Integer getId() {
         return id;
     }

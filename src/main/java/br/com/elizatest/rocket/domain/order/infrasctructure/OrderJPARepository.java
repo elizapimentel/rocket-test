@@ -62,7 +62,7 @@ public class OrderJPARepository implements OrderRepository {
         order.setClient(convertToModel(deleteOrder.getClient()));   
         var convertItem = deleteOrder.getItems().stream().map(item -> new OrderItemModel(item.getSku(), item.getName(), item.getValue(), item.getQuantity(), item.getTotal(), order)).collect(Collectors.toList());
         order.setItems(convertItem);
-        dao.save(order);
+        dao.delete(order);
         
     }
    

@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommand;
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommandExecutor;
+import br.com.elizatest.rocket.domain.order.application.commands.DeleteOrderCommand;
+import br.com.elizatest.rocket.domain.order.application.commands.DeleteOrderCommandExecutor;
 import br.com.elizatest.rocket.domain.order.core.OrderRepository;
 import br.com.elizatest.rocket.shared.command.ApplicationCommandDispatcher;
 import br.com.elizatest.rocket.shared.command.ApplicationCommandExecutor;
@@ -31,8 +33,12 @@ public class OrderConfiguration {
         return new OrderJPARepository(dao);
     }
 
-    
-
+    @Bean
+    public ApplicationCommandExecutor<Void, DeleteOrderCommand> deleteOrderCommandExecutor() {
+        DeleteOrderCommandExecutor executor = new DeleteOrderCommandExecutor(this.orderRepository());
+        commands.register(DeleteOrderCommand.class, executor);
+        return executor;
+    }
     
     
 }
