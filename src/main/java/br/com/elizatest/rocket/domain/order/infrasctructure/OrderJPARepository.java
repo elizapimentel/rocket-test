@@ -32,7 +32,7 @@ public class OrderJPARepository implements OrderRepository {
 
     @Override
     public void save(Order order) {
-        OrderModel orderModel = this.convertToModel(order);    
+        OrderModel orderModel = this.convertToModel(order);  
         dao.save(orderModel);
     }
 
@@ -45,14 +45,12 @@ public class OrderJPARepository implements OrderRepository {
         orderModel.setId(order.getId());
         orderModel.setDeliveryAddress(order.getDeliveryAddress());
         orderModel.setTotalOrder(order.getTotalOrder());
-        //onde colocar condição de caso cliente seja nulo?
         orderModel.setClient(convertToModel(order.getClient()));
         var convertItems = order.getItems().stream().map(item -> new OrderItemModel(item.getSku(), item.getName(), item.getValue(), item.getQuantity(), item.getTotal(), orderModel)).collect(Collectors.toList());
         orderModel.setItems(convertItems);
         return orderModel;
     }
 
-    //deletar cliente sem deletar pedido ??
     @Override
     public void deleteOrder(Order deleteOrder) {
         OrderModel order = new OrderModel(); 

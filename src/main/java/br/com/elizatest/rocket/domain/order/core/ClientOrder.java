@@ -104,9 +104,39 @@ public class ClientOrder {
     public Boolean getDeleted() {
         return deleted;
     }
+
+    
     
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 
     

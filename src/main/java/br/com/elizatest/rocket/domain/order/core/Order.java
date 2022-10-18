@@ -15,7 +15,7 @@ public class Order {
         this.totalOrder = totalOrder;
         this.client = client;
         this.items = items;
-    }
+    }    
 
     public void delete() {
         this.client.delete();

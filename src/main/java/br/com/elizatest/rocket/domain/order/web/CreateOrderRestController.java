@@ -13,13 +13,13 @@ import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderComm
 
 import br.com.elizatest.rocket.shared.command.ApplicationCommandDispatcher;
 
-class CreateOrderRquest {
+class CreateOrderRequest {
     public final String deliveryAddress;
     public final Double totalOrder;
     public final Client client;
     public final List<Item> items;
 
-    public CreateOrderRquest(String deliveryAddress, Double totalOrder, Client client, List<Item> items) {
+    public CreateOrderRequest(String deliveryAddress, Double totalOrder, Client client, List<Item> items) {
         this.deliveryAddress = deliveryAddress;
         this.totalOrder = totalOrder;
         this.client = client;
@@ -79,9 +79,9 @@ public class CreateOrderRestController {
     }
 
     @PostMapping("/v2/orders")
-    public ResponseEntity<?> createOrderRequestHandler(@RequestBody CreateOrderRquest createOrderRequest) {
+    public ResponseEntity<?> createOrderRequestHandler(@RequestBody CreateOrderRequest createOrderRequest) {
         try {
-            var client = new CreateOrderCommand.ClientOrder(createOrderRequest.client.id, createOrderRequest.client.name, createOrderRequest.client.cpf, createOrderRequest.client.email, createOrderRequest.client.phone, createOrderRequest.client.address, createOrderRequest.client.birth);
+            var client = new CreateOrderCommand.ClientOrder(createOrderRequest.client.id, createOrderRequest.client.name, createOrderRequest.client.cpf, createOrderRequest.client.email, createOrderRequest.client.phone, createOrderRequest.client.address, createOrderRequest.client.birth, null);
             var items = createOrderRequest.items
             .stream()
             .map(item -> new CreateOrderCommand.OrderItems(item.sku, item.name, item.value, item.quantity, item.total))

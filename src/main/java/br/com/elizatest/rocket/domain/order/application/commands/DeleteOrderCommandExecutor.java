@@ -6,11 +6,13 @@ import br.com.elizatest.rocket.shared.command.ApplicationCommandExecutor;
 
 public class DeleteOrderCommandExecutor implements ApplicationCommandExecutor<Void, DeleteOrderCommand> {
 
-    private final OrderRepository repository;
+    private final OrderRepository repository;    
 
     public DeleteOrderCommandExecutor(OrderRepository repository) {
         this.repository = repository;
+
     }
+
 
     @Override
     public Void execute(DeleteOrderCommand command) {

@@ -2,7 +2,6 @@ package br.com.elizatest.rocket.domain.order.application.commands;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import br.com.elizatest.rocket.shared.command.ApplicationCommand;
 
 public class CreateOrderCommand implements ApplicationCommand<Void>{
@@ -12,13 +11,14 @@ public class CreateOrderCommand implements ApplicationCommand<Void>{
     public final ClientOrder client;
     public final List<OrderItems> items;
 
-    public CreateOrderCommand(String deliveryAddress, Double totalOrder,  ClientOrder client,List<OrderItems> items) {
+    public CreateOrderCommand(String deliveryAddress, Double totalOrder, ClientOrder client, List<OrderItems> items) {
         this.deliveryAddress = deliveryAddress;
         this.totalOrder = totalOrder;
         this.client = client;
         this.items = items;
+        
+        
     }
-
     // add todos os itens e construtor
     public static class ClientOrder {
         public final Integer id;
@@ -28,9 +28,10 @@ public class CreateOrderCommand implements ApplicationCommand<Void>{
         public final String phone;
         public final String address;
         public final LocalDate birth;
+        public final Boolean deleted;
         
 
-        public ClientOrder(Integer id, String name, String cpf, String email, String phone, String address, LocalDate birth) {
+        public ClientOrder(Integer id, String name, String cpf, String email, String phone, String address, LocalDate birth, Boolean deleted) {
             this.id = id;
             this.name = name;
             this.cpf = cpf;
@@ -38,9 +39,9 @@ public class CreateOrderCommand implements ApplicationCommand<Void>{
             this.phone = phone;
             this.address = address;
             this.birth = birth;
+            this.deleted = false;
             
         }
-
 
     }
 
