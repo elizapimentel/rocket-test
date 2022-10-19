@@ -3,7 +3,6 @@ package br.com.elizatest.rocket.domain.order.infrasctructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.elizatest.rocket.domain.client.application.commands.DeleteClientCommandExecutor;
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommand;
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommandExecutor;
 import br.com.elizatest.rocket.domain.order.application.commands.DeleteClientOrderCommand;
