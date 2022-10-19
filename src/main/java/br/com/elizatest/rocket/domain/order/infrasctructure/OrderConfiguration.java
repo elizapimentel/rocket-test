@@ -3,11 +3,11 @@ package br.com.elizatest.rocket.domain.order.infrasctructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.elizatest.rocket.domain.client.Infrastructure.ClientJPARepository;
-import br.com.elizatest.rocket.domain.client.Infrastructure.ClientRepositoryDAO;
-import br.com.elizatest.rocket.domain.client.core.ClientRepository;
+import br.com.elizatest.rocket.domain.client.application.commands.DeleteClientCommandExecutor;
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommand;
 import br.com.elizatest.rocket.domain.order.application.commands.CreateOrderCommandExecutor;
+import br.com.elizatest.rocket.domain.order.application.commands.DeleteClientOrderCommand;
+import br.com.elizatest.rocket.domain.order.application.commands.DeleteClientOrderCommandExecutor;
 import br.com.elizatest.rocket.domain.order.application.commands.DeleteOrderCommand;
 import br.com.elizatest.rocket.domain.order.application.commands.DeleteOrderCommandExecutor;
 import br.com.elizatest.rocket.domain.order.core.ClientOrderRepository;
@@ -51,6 +51,12 @@ public class OrderConfiguration {
         commands.register(DeleteOrderCommand.class, executor);
         return executor;
     }
-    
+
+    @Bean
+    public ApplicationCommandExecutor<Void, DeleteClientOrderCommand> deleteClientOrderCommandExecutor() {
+        DeleteClientOrderCommandExecutor executor = new DeleteClientOrderCommandExecutor(this.clientOrderRepository(), this.orderRepository());
+        commands.register(DeleteClientOrderCommand.class, executor);
+        return executor;
+    }
     
 }

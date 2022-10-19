@@ -9,6 +9,7 @@ import br.com.elizatest.rocket.domain.order.core.ClientOrderRepository;
 
 @Service
 public class ClientOrderJPARepository implements ClientOrderRepository {
+    
     private final ClientOrderRepositoryDAO dao;
 
     public ClientOrderJPARepository(ClientOrderRepositoryDAO dao) {
@@ -41,7 +42,7 @@ public class ClientOrderJPARepository implements ClientOrderRepository {
 
     @Override
     public ClientOrder updateClient(ClientOrder updateClient) {
-        ClientOrderModel client = new ClientOrderModel(updateClient.getId(), updateClient.getName(), updateClient.getCpf(), updateClient.getEmail(), updateClient.getPhone(), updateClient.getAddress(), updateClient.getBirth(), updateClient.getDeleted());;     
+        ClientOrderModel client = new ClientOrderModel(updateClient.getId(), updateClient.getName(), updateClient.getCpf(), updateClient.getEmail(), updateClient.getPhone(), updateClient.getAddress(), updateClient.getBirth(), updateClient.getDeleted());
         dao.save(client);
         return updateClient;        
     }
@@ -58,8 +59,6 @@ public class ClientOrderJPARepository implements ClientOrderRepository {
     public Boolean emailExists(String email) {
        return dao.findByEmail(email) != null;
     }
-
-    
 
     
 
